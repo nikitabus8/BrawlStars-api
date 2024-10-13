@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brawl Info</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <form action="/" method="POST">
+        <input type="text" name="UserPlayerTag" placeholder="Player Tag">
+        <input type="submit">
+    </form>
+
+    <% if(locals.playerInfo){ %>
+
+        <h1 class="name"><%= playerInfo.name %></h1>
+        <div class="info">
+            <h1 class="playerInfo">Trophies: <%= playerInfo.trophies %></h1>
+            <h1 class="playerInfo">Exp lvl: <%= playerInfo.expLevel %></h1>
+            <h1 class="playerInfo">Solo Wins: <%= playerInfo.soloVictories %></h1>
+            <h1 class="playerInfo">Duo Wins: <%= playerInfo.duoVictories %></h1>
+        </div>
+
+        <div class="playerBattleLog">
+            <% for (let i = 0; i < 4; i++) { %>
+
+                <% if (playerBattles.items[i].event.mode === "trophyEscape" || playerBattles.items[i].event.mode === "soloShowdown") { %>
+
+                    <div class="battle">
+
+                        <div class="battleInfo">
+                            <div class="battleMapInfo">
+                                <h1 class="battleMode"><%= playerBattles.items[i].event.mode %></h1>
+                                <p class="battleMap">Map: <%= playerBattles.items[i].event.map %> </p>
+                            </div>
+                            <div class="battleResult">
+                                <p class="battleResult"> Rank: <%= playerBattles.items[i].battle.rank %></p>
+                                <p><%= playerBattles.items[i].battle.trophyChange %></p>
+                            </div>
+                        </div>
+
+                        <div class="players">
+                            <% playerBattles.items[i].battle.players.forEach(function(player){ %>
+                                <div class="player">
+                                    <img src="photos/brawlers/<%= player.brawler.name %>.WEBP">
+                                    <p><%= player.name %></p>
+                                </div>
+                            <% }) %>
+                        </div>
+
+                    </div>
+
+                <% } else if(playerBattles.items[i].event.mode === "duoShowdown"){%>
+
+                     <h1>this is a Duo showdown game</h1>
+
+                <% } else{ %>
+
+                    <div class="battle">
+
+                        <div class="battleInfo">
+                            <div class="battleMapInfo">
+                                <h1 class="battleMode"><%= playerBattles.items[i].event.mode %></h1>
+                                <p class="battleMap">Map: <%= playerBattles.items[i].event.map %> </p>
+                            </div>
+                            <div class="battleResult">
+                                <p class="battleResult"><%= playerBattles.items[i].battle.result.toUpperCase() %></p>
+                                <p><%= playerBattles.items[i].battle.trophyChange %></p>
+                            </div>
+                        </div>
+
+                        <div class="teams">
+
+                            <div class="team1">
+                                <% for (let v = 0; v < playerBattles.items[i].battle.teams[0].length; v++) { %>
+                                    <div class="team1Player">
+                                        <img src="photos/brawlers/<%= playerBattles.items[i].battle.teams[0][v].brawler.name %>.WEBP" class="team1PlayerImage">
+                                        <p class="team1PlayerName"><%= playerBattles.items[i].battle.teams[0][v].name %></p>
+                                    </div>
+                                <%} %>
+                            </div>
+
+                            <div class="team2">
+                                <% for (let v = 0; v < playerBattles.items[i].battle.teams[1].length; v++) { %>
+                                    <div class="team2Player">
+                                        <img src="photos/brawlers/<%= playerBattles.items[i].battle.teams[1][v].brawler.name %>.WEBP" class="team2PlayerImage">
+                                        <p class="team2PlayerName"><%= playerBattles.items[i].battle.teams[1][v].name %></p>
+                                    </div>
+                                <%} %>
+                            </div>
+
+                        </div>
+                    </div>
+                <% } %>
+            <%} %>
+        </div>
+
+        <div class="brawlers">
+            <% playerInfo.brawlers.forEach(function(brawler){%>
+                <div class="brawler">
+                    <h1><%= brawler.name %></h1>
+                    <p>power:<%= brawler.power %></p>
+                    <p>rank: <%= brawler.rank %></p>
+                    <p>current trophies: <%= brawler.trophies %></p>
+                </div>
+            <% }) %>
+        </div>
+
+    <% } %>
+</body>
+</html>

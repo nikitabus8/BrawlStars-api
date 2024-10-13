@@ -1,0 +1,89 @@
+.brawlers{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 10px;
+}
+.brawler{
+    border: solid 2px black;
+    text-align: center;
+    border-radius: .995rem;
+}
+.info{
+    display: flex;
+    justify-content: space-around;
+}
+.playerInfo{
+    border: solid 2px black;
+    padding: 15px;
+    border-radius: .995rem;
+}
+.name{
+    width: 100%;
+    text-align: center;
+    font-size: 70px;
+}
+img{
+    width: 100%;
+    border-radius: .4rem;
+}
+.playerBattleLog{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.battle{
+    display: flex;
+    flex-direction: column;
+    border: black 2px solid;
+    margin: 10px;
+    padding: 10px;
+}
+.battleInfo{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: black 2px solid;
+    margin-bottom: 10px;
+}
+.battleMode{
+    margin: 0;
+}
+.teams{
+    width: 100%;
+}
+
+.team1, .team2{
+    display: flex;
+    justify-content: space-around;
+}
+
+.team2Player, .team1Player{
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    height: 120px;
+    text-align: center;
+    margin: 5px;
+}
+.team1PlayerName, .team2PlayerName{
+    padding: 0px;
+    margin: 0px;
+}
+.players{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+.player{
+    display: flex;
+    flex-direction: column;
+    width: 90px;
+    height: 120px;
+    text-align: center;
+    margin: 5px;
+}
+p{
+    width: max-content;
+    margin: 0;
+}
